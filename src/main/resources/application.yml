@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: sample
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${CONTAINER_DB_PORT:3310}/${DB_NAME:demo_db}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:demo_user}
+    password: ${DB_PASSWORD:demo_password}
+
+  jpa:
+    hibernate:
+      ddl-auto: update # (처음에는 update로. 나중에는 validate로 변경 권장)
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port:
+    ${SERVICE_PORT:8080}
