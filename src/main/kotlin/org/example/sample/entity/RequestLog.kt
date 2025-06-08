@@ -1,4 +1,4 @@
-package org.example.sample
+package org.example.sample.entity
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
