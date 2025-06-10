@@ -59,4 +59,9 @@ class AnswerService (
 
         answerRepository.delete(answer)
     }
+
+    @Transactional
+    fun getRecentAnswers():List<AnswerResponse>{
+        return answerRepository.findTop3ByOrderByCreatedAtDesc().map { AnswerResponse.fromEntity(it) };
+    }
 }
