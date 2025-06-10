@@ -1,6 +1,7 @@
 services:
   app:
-    image: mumulbo/yy-sample-service:dev
+    image: ${DOCKER_IMAGE}:dev
+    container_name: ${APPLICATION_NAME}
     environment:
       - TZ=Asia/Seoul
     env_file:
