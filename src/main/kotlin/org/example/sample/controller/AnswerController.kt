@@ -72,4 +72,14 @@ class AnswerController(
         return ResponseEntity.noContent().build<Void>();
     }
 
+    /**
+     * 최근 답변 조회 (최대 3)
+     * @return 답변 목록
+     * */
+    @GetMapping("/answers/recent")
+    fun recentAnswer(
+    ):ResponseEntity<List<AnswerResponse>>{
+        return ResponseEntity.ok(answerService.getRecentAnswers())
+    }
+
 }
