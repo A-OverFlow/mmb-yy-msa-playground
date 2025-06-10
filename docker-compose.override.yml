@@ -3,4 +3,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: demo-app:local
+    image: mumulbo/mmb-answer-service:local
+    container_name: mmb-answer-service
