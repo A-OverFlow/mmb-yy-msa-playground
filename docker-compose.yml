@@ -35,4 +35,4 @@ volumes:
 networks:
   external-net:
     external: true
-    name: db-network
+    name: ${MMB_DOCKER_NETWORK}
