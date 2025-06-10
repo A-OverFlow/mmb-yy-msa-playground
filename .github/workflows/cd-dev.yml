@@ -59,7 +59,7 @@ jobs:
       - name: 배포에 필요한 .env 파일 생성
         run: |
           echo "APPLICATION_NAME=${{ vars.APPLICATION_NAME }}" > .env
-          echo "MMB_DOCKER_NETWORK=${{ vars.MMB_DOCKER_NETWORK }}" > .env
+          echo "MMB_DOCKER_NETWORK=${{ vars.MMB_DOCKER_NETWORK }}" >> .env
           echo "DOCKER_IMAGE=${{ vars.DOCKER_IMAGE }}" >> .env
           echo "SERVICE_PORT=${{ vars.SERVICE_PORT }}" >> .env
           echo "DB_NAME=${{ vars.DB_NAME }}" >> .env
