@@ -1,5 +1,6 @@
 package org.example.sample.service
 
+import org.example.sample.dto.AnswerCountResponse
 import org.example.sample.dto.AnswerRequest
 import org.example.sample.dto.AnswerResponse
 import org.example.sample.dto.AnswerUpdateRequest
@@ -63,5 +64,10 @@ class AnswerService (
     @Transactional
     fun getRecentAnswers():List<AnswerResponse>{
         return answerRepository.findTop3ByOrderByCreatedAtDesc().map { AnswerResponse.fromEntity(it) };
+    }
+
+    @Transactional
+    fun countAnswers(): AnswerCountResponse{
+        return AnswerCountResponse(answerCount = answerRepository.count())
     }
 }

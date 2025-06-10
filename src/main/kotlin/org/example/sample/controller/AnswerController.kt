@@ -1,5 +1,6 @@
 package org.example.sample.controller
 
+import org.example.sample.dto.AnswerCountResponse
 import org.example.sample.dto.AnswerRequest
 import org.example.sample.dto.AnswerResponse
 import org.example.sample.dto.AnswerUpdateRequest
@@ -80,6 +81,16 @@ class AnswerController(
     fun recentAnswer(
     ):ResponseEntity<List<AnswerResponse>>{
         return ResponseEntity.ok(answerService.getRecentAnswers())
+    }
+
+    /**
+     * 전체 답변 수
+     * @return 전체 답변 수
+     * */
+    @GetMapping("/answers/count")
+    fun countAnswers(
+    ): ResponseEntity<AnswerCountResponse>{
+        return ResponseEntity.ok(answerService.countAnswers())
     }
 
 }
