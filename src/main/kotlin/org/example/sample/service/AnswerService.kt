@@ -16,8 +16,8 @@ class AnswerService (
     private val answerRepository: AnswerRepository
 ){
     fun getAnswerAll(questionId: Long): List<AnswerResponse> {
-        val sortByCreatedAtDesc = Sort.by(Sort.Direction.DESC, "createdAt")
-        return answerRepository.findByQuestionId(questionId, sortByCreatedAtDesc)
+        val sortByCreatedAtAsc = Sort.by(Sort.Direction.ASC, "createdAt")
+        return answerRepository.findByQuestionId(questionId, sortByCreatedAtAsc)
             .map { AnswerResponse.fromEntity(it) };
     }
 

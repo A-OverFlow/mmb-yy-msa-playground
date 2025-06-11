@@ -21,7 +21,7 @@ class AnswerController(
      * @param
      * @return
      * */
-    @GetMapping("/questions/{questionId}/answers")
+    @GetMapping("/answers/{questionId}")
     fun getAllAnswers(
         @PathVariable questionId: Long
     ): ResponseEntity<List<AnswerResponse>> {
