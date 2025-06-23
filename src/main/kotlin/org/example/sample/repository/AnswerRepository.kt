@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface AnswerRepository: JpaRepository<Answer, Long>{
     fun findByQuestionId(questionId: Long, sort: Sort): List<Answer>
 
-    fun findTop3ByOrderByCreatedAtDesc(): List<Answer>
+    fun findTop5ByOrderByCreatedAtDesc(): List<Answer>
 }

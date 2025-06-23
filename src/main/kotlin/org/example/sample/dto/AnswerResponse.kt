@@ -7,18 +7,18 @@ data class AnswerResponse(
     val answerId: Long,
     val questionId: Long,
     val answer: String,
-    val author: String,
+    val author: Author,
     val userId: Long,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 ) {
     companion object {
-        fun fromEntity(answer: Answer): AnswerResponse =
+        fun fromEntity(answer: Answer, author: Author): AnswerResponse =
             AnswerResponse(
                 answerId = answer.answerId!!,
                 questionId = answer.questionId!!,
                 answer = answer.answer,
-                author = answer.author,
+                author = author,
                 userId = answer.userId,
                 createdAt = answer.createdAt,
                 updatedAt = answer.updatedAt
