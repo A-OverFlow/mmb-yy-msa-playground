@@ -1,5 +1,6 @@
 package org.example.sample.service
 
+import org.example.sample.client.MemberClient
 import org.example.sample.dto.AnswerCountResponse
 import org.example.sample.dto.AnswerRequest
 import org.example.sample.dto.AnswerResponse
@@ -13,12 +14,17 @@ import java.time.LocalDateTime
 
 @Service
 class AnswerService (
-    private val answerRepository: AnswerRepository
+    private val answerRepository: AnswerRepository,
+    private val memberClient: MemberClient
 ){
     fun getAnswerAll(questionId: Long): List<AnswerResponse> {
         val sortByCreatedAtAsc = Sort.by(Sort.Direction.ASC, "createdAt")
-        return answerRepository.findByQuestionId(questionId, sortByCreatedAtAsc)
-            .map { AnswerResponse.fromEntity(it) };
+        val answers = answerRepository.findByQuestionId(questionId, sortByCreatedAtAsc)
+
+        return answers.map { answer ->
+            val authorDto = memberClient.getAuthor(answer.userId)
+            AnswerResponse.fromEntity(answer, authorDto)
+        }
     }
 
     @Transactional
@@ -63,7 +69,12 @@ class AnswerService (
 
     @Transactional
     fun getRecentAnswers():List<AnswerResponse>{
-        return answerRepository.findTop3ByOrderByCreatedAtDesc().map { AnswerResponse.fromEntity(it) };
+        val recentAnswers = answerRepository.findTop5ByOrderByCreatedAtDesc()
+
+        return recentAnswers.map { answer ->
+            val authorDto = memberClient.getAuthor(answer.userId) // X-User-Id 헤더로 요청
+            AnswerResponse.fromEntity(answer, authorDto)
+        }
     }
 
     @Transactional
